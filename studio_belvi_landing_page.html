@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Belvi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ivory: #f5f1eb;
+      --stone: #d8d1c7;
+      --charcoal: #2f2d2a;
+      --olive: #697160;
+      --clay: #b58d78;
+      --white: #ffffff;
+      --soft-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    /* NAV */
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(245, 241, 235, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 1px;
+      background: var(--charcoal);
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text small {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--olive);
+      font-size: 0.8rem;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(4rem, 8vw, 7rem);
+      line-height: 0.95;
+      margin: 1rem 0 2rem;
+    }
+
+    .hero-text p {
+      max-width: 520px;
+      font-size: 1.1rem;
+      color: rgba(47,45,42,0.8);
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: 0.3s ease;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #1f1d1b;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(47,45,42,0.15);
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(47,45,42,0.04);
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 680px;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--soft-shadow);
+      transition: transform 0.6s ease;
+    }
+
+    .shape:hover {
+      transform: translateY(-8px);
+    }
+
+    .shape-1 {
+      width: 70%;
+      height: 68%;
+      right: 0;
+      top: 0;
+      background: linear-gradient(145deg, #d7cfc3, #b58d78);
+    }
+
+    .shape-2 {
+      width: 45%;
+      height: 42%;
+      left: 0;
+      bottom: 8%;
+      background: linear-gradient(145deg, #6c7365, #d8d1c7);
+    }
+
+    .shape-3 {
+      width: 38%;
+      height: 28%;
+      right: 8%;
+      bottom: 0;
+      background: var(--white);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .shape-3 h3 {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 7rem 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 4rem;
+    }
+
+    .section-header span {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--olive);
+      font-size: 0.8rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      line-height: 1;
+      margin: 1rem 0;
+    }
+
+    .section-header p {
+      color: rgba(47,45,42,0.75);
+      font-size: 1.05rem;
+    }
+
+    /* SERVICES */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 28px;
+      padding: 2.5rem;
+      transition: 0.35s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .service-number {
+      font-size: 0.9rem;
+      color: var(--olive);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.1em;
+    }
+
+    .service-card h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* PORTFOLIO */
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 420px;
+      background: linear-gradient(145deg, #d4cbbf, #8a9383);
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      color: var(--white);
+    }
+
+    .portfolio-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
+    }
+
+    .portfolio-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .portfolio-content h3 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* PROCESS */
+
+    .process {
+      background: #ece5db;
+      border-radius: 40px;
+      padding: 4rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .process-step h3 {
+      font-size: 1.8rem;
+      margin: 1rem 0;
+    }
+
+    .process-step span {
+      font-size: 0.85rem;
+      color: var(--olive);
+      letter-spacing: 0.12em;
+    }
+
+    /* CTA */
+
+    .cta {
+      text-align: center;
+      padding: 7rem 2rem;
+      background: var(--charcoal);
+      color: var(--white);
+      border-radius: 40px;
+    }
+
+    .cta h2 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: auto;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+
+    .cta .btn-primary {
+      background: var(--white);
+      color: var(--charcoal);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      color: rgba(47,45,42,0.7);
+    }
+
+    /* REVEAL ANIMATION */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .services-grid,
+      .portfolio-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 8rem 0 4rem;
+      }
+
+      .hero-visual {
+        height: 500px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .process {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-text h1 {
+        font-size: 4rem;
+      }
+
+      .shape-3 {
+        width: 60%;
+      }
+
+      section {
+        padding: 5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-wrapper">
+      <div class="logo">Studio Belvi</div>
+
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+
+      <div class="hero-text reveal">
+        <small>Immersive Celebration Design</small>
+        <h1>Stories made tangible.</h1>
+        <p>
+          Studio Belvi creates emotionally-driven celebrations through handcrafted storytelling, spatial design, custom fabrication, and immersive personalized details.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Start Your Story</a>
+          <a href="#portfolio" class="btn btn-secondary">Explore Our Work</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+
+        <div class="shape shape-3">
+          <h3>Emotion.
+          Craft.
+          Atmosphere.</h3>
+          <p>Personalized celebrations designed with narrative, artistry, and intention.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="services">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <span>Services</span>
+        <h2>Designed around your story.</h2>
+        <p>
+          We create immersive and emotionally meaningful experiences through handcrafted details, spatial storytelling, and personalized design.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-number">01</div>
+          <h3>Story Objects</h3>
+          <p>
+            Invitation suites, keepsakes, personalized gifts, jewelry, and symbolic artifacts crafted to hold memory and meaning.
+          </p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-number">02</div>
+          <h3>Spatial Narratives</h3>
+          <p>
+            Sculptural installations, ceremony environments, signage systems, and immersive visual details that transform spaces into experiences.
+          </p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-number">03</div>
+          <h3>Interactive Moments</h3>
+          <p>
+            Personalized guest experiences, narrative elements, hidden symbolism, and interactive storytelling designed to create unforgettable memories.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <span>Selected Work</span>
+        <h2>Immersive celebrations with soul.</h2>
+        <p>
+          Every detail is designed intentionally — from handcrafted objects to atmospheric installations and emotionally-driven guest experiences.
+        </p>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-item reveal">
+          <div class="portfolio-content">
+            <h3>Modern Mediterranean Ceremony</h3>
+            <p>Warm textures, sculptural arches, and intimate storytelling.</p>
+          </div>
+        </div>
+
+        <div class="portfolio-item reveal" style="background: linear-gradient(145deg, #6e7567, #b9a18d);">
+          <div class="portfolio-content">
+            <h3>Celestial Dinner Experience</h3>
+            <p>Interactive keepsakes, ambient lighting, and symbolic details.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container">
+
+      <div class="process reveal">
+
+        <div class="section-header">
+          <span>Our Process</span>
+          <h2>Crafted with intention.</h2>
+        </div>
+
+        <div class="process-grid">
+
+          <div class="process-step">
+            <span>01</span>
+            <h3>Discover</h3>
+            <p>We learn your story, aesthetic, memories, and emotional vision.</p>
+          </div>
+
+          <div class="process-step">
+            <span>02</span>
+            <h3>Concept</h3>
+            <p>We design immersive visual concepts and narrative-driven experiences.</p>
+          </div>
+
+          <div class="process-step">
+            <span>03</span>
+            <h3>Create</h3>
+            <p>Through fabrication, design, lighting, and craftsmanship, ideas become tangible.</p>
+          </div>
+
+          <div class="process-step">
+            <span>04</span>
+            <h3>Experience</h3>
+            <p>Your guests step into a celebration designed with emotion and meaning.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta reveal" id="contact">
+        <h2>Let’s create something unforgettable.</h2>
+        <p>
+          Studio Belvi designs personalized celebrations through atmosphere, storytelling, and handcrafted artistry.
+        </p>
+
+        <a href="mailto:hello@studiobelvi.com" class="btn btn-primary">
+          Begin Your Project
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Studio Belvi — Crafted for meaningful moments.</p>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    reveals.forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
