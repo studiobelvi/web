@@ -453,11 +453,19 @@
     <div class="container nav-wrapper">
       <div class="logo">Studio Belvi</div>
 
-      <div class="nav-links">
+      <div style="display:flex; align-items:center; gap:2rem;">
+        <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#process">Process</a>
         <a href="#contact">Contact</a>
+      </div>
+
+        <select id="language-switcher" style="padding:0.7rem 1rem; border-radius:999px; border:1px solid rgba(0,0,0,0.08); background:white; font-family:'Inter', sans-serif; cursor:pointer;">
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="ca">CA</option>
+        </select>
       </div>
     </div>
   </nav>
@@ -466,15 +474,15 @@
     <div class="container hero-grid">
 
       <div class="hero-text reveal">
-        <small>Immersive Celebration Design</small>
-        <h1>Stories made tangible.</h1>
-        <p>
+        <small data-i18n="hero_small">Immersive Celebration Design</small>
+        <h1 data-i18n="hero_title">Stories made tangible.</h1>
+        <p data-i18n="hero_text">
           Studio Belvi creates emotionally-driven celebrations through handcrafted storytelling, spatial design, custom fabrication, and immersive personalized details.
         </p>
 
         <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">Start Your Story</a>
-          <a href="#portfolio" class="btn btn-secondary">Explore Our Work</a>
+          <a href="#contact" class="btn btn-primary"><span data-i18n="hero_cta">Start Your Story</span></a>
+          <a href="#portfolio" class="btn btn-secondary"><span data-i18n="hero_secondary_cta">Explore Our Work</span></a>
         </div>
       </div>
 
@@ -613,7 +621,7 @@
           Studio Belvi designs personalized celebrations through atmosphere, storytelling, and handcrafted artistry.
         </p>
 
-        <a href="mailto:studiobelvi@gmail.com" class="btn btn-primary">
+        <a href="mailto:hello@studiobelvi.com" class="btn btn-primary">
           Begin Your Project
         </a>
       </div>
@@ -627,6 +635,51 @@
   </footer>
 
   <script>
+    const translations = {
+      en: {
+        hero_small: 'Immersive Celebration Design',
+        hero_title: 'Stories made tangible.',
+        hero_text: 'Studio Belvi creates emotionally-driven celebrations through handcrafted storytelling, spatial design, custom fabrication, and immersive personalized details.',
+        hero_cta: 'Start Your Story',
+        hero_secondary_cta: 'Explore Our Work'
+      },
+      es: {
+        hero_small: 'Diseño Inmersivo para Celebraciones',
+        hero_title: 'Historias hechas tangibles.',
+        hero_text: 'Studio Belvi crea celebraciones emocionales a través de narrativa artesanal, diseño espacial, fabricación personalizada y detalles inmersivos.',
+        hero_cta: 'Comienza Tu Historia',
+        hero_secondary_cta: 'Explora Nuestro Trabajo'
+      },
+      ca: {
+        hero_small: 'Disseny Immersiu per a Celebracions',
+        hero_title: 'Històries fetes tangibles.',
+        hero_text: 'Studio Belvi crea celebracions emocionals mitjançant narrativa artesanal, disseny espacial, fabricació personalitzada i detalls immersius.',
+        hero_cta: 'Comença la Teva Història',
+        hero_secondary_cta: 'Explora el Nostre Treball'
+      }
+    };
+
+    const languageSwitcher = document.getElementById('language-switcher');
+
+    function updateLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+
+      localStorage.setItem('studioBelviLanguage', lang);
+    }
+
+    languageSwitcher.addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+
+    const savedLanguage = localStorage.getItem('studioBelviLanguage') || 'en';
+    languageSwitcher.value = savedLanguage;
+    updateLanguage(savedLanguage);
+
     const reveals = document.querySelectorAll('.reveal');
 
     const observer = new IntersectionObserver((entries) => {
