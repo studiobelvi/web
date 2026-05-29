@@ -32,7 +32,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bone);
+      background: var(--paper);
       color: var(--ink);
       line-height: 1.7;
       overflow-x: hidden;
@@ -82,6 +82,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 2rem;
       letter-spacing: 0.12em;
+      color: var(--bone);
     }
 
     .nav-links {
@@ -90,6 +91,7 @@
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      color: var(--bone);
     }
 
     .nav-links a {
@@ -138,6 +140,7 @@
     .hero-text h1 {
       font-size: clamp(4rem, 8vw, 7rem);
       line-height: 0.95;
+      color: var(--ink);
       margin: 1rem 0 2rem;
     }
 
@@ -177,10 +180,12 @@
     .btn-secondary {
       border: 1px solid var(--bronze);
       background: transparent;
+      color: var(--bronze);
     }
 
     .btn-secondary:hover {
       background: var(--bronze);
+      color: var(--bone)
     }
 
     .hero-visual {
@@ -255,7 +260,7 @@
     }
 
     .service-card {
-      background: var(--paper);
+      background: var(--bone);
       border: 1px solid rgba(0,0,0,0.05);
       border-radius: 28px;
       padding: 2.5rem;
@@ -375,7 +380,7 @@
     footer {
       padding: 3rem 0;
       text-align: center;
-      color: var(--bronze);
+      color: var(--espresso);
     }
 
     /* REVEAL ANIMATION */
@@ -447,7 +452,7 @@
         <a href="#contact">Contact</a>
       </div>
 
-        <select id="language-switcher" style="padding:0.7rem 1rem; border-radius:999px; border:1px solid rgba(0,0,0,0.08); background:white; font-family:'Inter', sans-serif; cursor:pointer;">
+        <select id="language-switcher" style="padding:0.7rem 1rem; border-radius:999px; border:1px solid rgba(0,0,0,0.08); background:var(--bone); font-family:'Inter', sans-serif; cursor:pointer;">
           <option value="en">EN</option>
           <option value="es">ES</option>
           <option value="ca">CA</option>
@@ -541,7 +546,7 @@
           </div>
         </div>
 
-        <div class="portfolio-item reveal" style="background: linear-gradient(145deg, #6e7567, #b9a18d);">
+        <div class="portfolio-item reveal">
           <div class="portfolio-content">
             <h3>Celestial Dinner Experience</h3>
             <p>Interactive keepsakes, ambient lighting, and symbolic details.</p>
